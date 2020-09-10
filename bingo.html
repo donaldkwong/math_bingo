@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Math Bingo!</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <style media="all">
+		table {
+			border-collapse: collapse;
+		}
+    	table, th, td {
+ 			border: 1px solid black;
+		}
+		.bingo_table {
+			width: 60%;
+			margin: auto;
+		}
+		.bingo_cell {
+			width: 20%;
+			padding-top: 5%;
+			padding-bottom: 5%;
+			height: 0;
+			text-align: center;
+			font-size: 500%;
+		}
+		.correct {
+			background-color: green;
+		}
+		.incorrect {
+			background-color: red;
+		}
+		.question_table {
+			width: 60%;
+			margin: auto;
+			margin-bottom: 50px;
+		}
+		.question_number {
+			width: 20%;
+			margin: auto;
+			margin-bottom: 50px;
+			font-size: 500%;
+			text-align: center;
+		}
+		.question_text {
+			text-align: center;
+			font-size: 200%;			
+		}
+		.answer {
+			width: 3%;
+			margin: auto;
+			text-align: center;			
+		}
+    </style>
+</head>
+<body>
+    <script>
+	    $.getJSON('http://time.jsontest.com', function(data) {
+	        $(".bingo_cell").click(function() {
+	        	var cell_number = $(this).text();
+	        	$(".question_number").html("#" + cell_number);
+	        	$(".question_text").html("A placeholder for the math bingo question for cell number " + cell_number + ".");
+	        	$(".answer").unbind("click");
+	        	$(".answer").click(function() {
+	        		var correct = $(this).hasClass("correct");
+	        		var cell = $(".bingo_cell").filter(function() {
+					    return $(this).text() === cell_number;
+					});
+					if (correct) {
+						cell.removeClass("incorrect");
+						cell.addClass("correct");
+					} else {
+						cell.removeClass("correct");
+						cell.addClass("incorrect");						
+					}
+	        	})
+	        })
+	    });
+    </script>
+
+	<div>
+	    <table class="question_table">
+	    	<tr><td rowspan="2" class="question_number">##</td><td rowspan="2" class="question_text">Click on a cell below to get started.</td><td class="answer correct">✓</td></tr>
+	    	<tr><td class="answer incorrect">✗</td></tr>
+	    </table>
+	</div>
+	<div>
+	    <table class="bingo_table">
+	        <tr><td class="bingo_cell">1</td><td class="bingo_cell">2</td><td class="bingo_cell">3</td><td class="bingo_cell">4</td><td class="bingo_cell">5</td></tr>
+	        <tr><td class="bingo_cell">6</td><td class="bingo_cell">7</td><td class="bingo_cell">8</td><td class="bingo_cell">9</td><td class="bingo_cell">10</td></tr>
+	        <tr><td class="bingo_cell">11</td><td class="bingo_cell">12</td><td class="bingo_cell">13</td><td class="bingo_cell">14</td><td class="bingo_cell">15</td></tr>
+	        <tr><td class="bingo_cell">16</td><td class="bingo_cell">17</td><td class="bingo_cell">18</td><td class="bingo_cell">19</td><td class="bingo_cell">20</td></tr>
+	        <tr><td class="bingo_cell">21</td><td class="bingo_cell">22</td><td class="bingo_cell">23</td><td class="bingo_cell">24</td><td class="bingo_cell">25</td></tr>
+	    </table>
+	</div>
+</body>
+</html>
