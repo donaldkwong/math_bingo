@@ -1,0 +1,22 @@
+name: Test workflow
+
+on:
+  workflow_dispatch:
+    branches:
+      - main
+      - staging
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo
+        run: echo ${{ github.ref }}
+
+      - name: Main step
+        run: echo main
+        if: github.ref == 'refs/head/main'
+      
+      - name: Staging step
+        run: echo staging
+        if: github.ref == 'refs/head/staging'
