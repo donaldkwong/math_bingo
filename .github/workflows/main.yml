@@ -11,16 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo
-        env:
-          BRANCH: ${{env.GITHUB_REF_NAME}}
         run: |
           echo ${{ github.ref }}
-          echo "$BRANCH"
 
       - name: Main step
-        run: echo main
+        run: |
+          echo main
         if: github.ref == 'refs/heads/main'
       
       - name: Staging step
-        run: echo staging
+        run: |
+          echo staging
         if: github.ref == 'refs/heads/staging'
