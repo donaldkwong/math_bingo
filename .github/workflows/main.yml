@@ -11,9 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo
+        env:
+          BRANCH: ${{env.GITHUB_REF_NAME}}
         run: |
           echo ${{ github.ref }}
-          echo ${{ env.GITHUB_REF_NAME }}
+          echo "$BRANCH"
 
       - name: Main step
         run: echo main
