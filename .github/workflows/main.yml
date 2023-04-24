@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Echo
         run: |
-          echo ${{ github.ref }} |
+          echo ${{ github.ref }}
           echo ${{ env.GITHUB_REF_NAME }}
 
       - name: Main step
