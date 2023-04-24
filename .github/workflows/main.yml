@@ -15,8 +15,8 @@ jobs:
 
       - name: Main step
         run: echo main
-        if: github.ref == 'refs/head/main'
+        if: github.ref == 'refs/heads/main'
       
       - name: Staging step
         run: echo staging
-        if: github.ref == 'refs/head/staging'
+        if: github.ref == 'refs/heads/staging'
